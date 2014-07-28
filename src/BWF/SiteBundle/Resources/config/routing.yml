@@ -1,0 +1,15 @@
+bwf_site_eft:
+    pattern:  /EFT
+    defaults: { _controller: BWFArticlesBundle:Default:index }
+    
+bwf_site_alpha:
+    pattern:  /Alphabétisation
+    defaults: { _controller: BWFArticlesBundle:Default:indexAlpha }
+    
+bwf_site_ceram:
+    pattern:  /Céramique
+    defaults: { _controller: BWFArticlesBundle:Default:indexCeram }
+    
+bwf_site_acceuil:
+    pattern:  /Bienvenue
+    defaults: { _controller: BWFArticlesBundle:Default:indexAcceuil }
