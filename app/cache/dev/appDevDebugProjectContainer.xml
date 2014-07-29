@@ -2305,7 +2305,12 @@
       <argument type="service">
         <service class="Doctrine\ORM\Configuration" public="false">
           <call method="setEntityNamespaces">
-            <argument type="collection"/>
+            <argument type="collection">
+              <argument key="BWFArticlesBundle">BWF\ArticlesBundle\Entity</argument>
+              <argument key="BWFVideoBundle">BWF\VideosBundle\Entity</argument>
+              <argument key="BWFFormationsBundle">BWF\FormationsBundle\Entity</argument>
+              <argument key="BWFSiteBundle">BWF\SiteBundle\Entity</argument>
+            </argument>
           </call>
           <call method="setMetadataCacheImpl">
             <argument type="service">
@@ -2336,7 +2341,64 @@
           </call>
           <call method="setMetadataDriverImpl">
             <argument type="service">
-              <service class="Doctrine\ORM\Mapping\Driver\DriverChain" public="false"/>
+              <service class="Doctrine\ORM\Mapping\Driver\DriverChain" public="false">
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                      <argument type="service" id="annotation_reader"/>
+                      <argument type="collection">
+                        <argument>/Applications/MAMP/htdocs/ASBL_Avec_Le_Soleil/src/BWF/ArticlesBundle/Entity</argument>
+                        <argument>/Applications/MAMP/htdocs/ASBL_Avec_Le_Soleil/src/BWF/VideosBundle/Entity</argument>
+                        <argument>/Applications/MAMP/htdocs/ASBL_Avec_Le_Soleil/src/BWF/FormationsBundle/Entity</argument>
+                        <argument>/Applications/MAMP/htdocs/ASBL_Avec_Le_Soleil/src/BWF/SiteBundle/Entity</argument>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>BWF\ArticlesBundle\Entity</argument>
+                </call>
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                      <argument type="service" id="annotation_reader"/>
+                      <argument type="collection">
+                        <argument>/Applications/MAMP/htdocs/ASBL_Avec_Le_Soleil/src/BWF/ArticlesBundle/Entity</argument>
+                        <argument>/Applications/MAMP/htdocs/ASBL_Avec_Le_Soleil/src/BWF/VideosBundle/Entity</argument>
+                        <argument>/Applications/MAMP/htdocs/ASBL_Avec_Le_Soleil/src/BWF/FormationsBundle/Entity</argument>
+                        <argument>/Applications/MAMP/htdocs/ASBL_Avec_Le_Soleil/src/BWF/SiteBundle/Entity</argument>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>BWF\VideosBundle\Entity</argument>
+                </call>
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                      <argument type="service" id="annotation_reader"/>
+                      <argument type="collection">
+                        <argument>/Applications/MAMP/htdocs/ASBL_Avec_Le_Soleil/src/BWF/ArticlesBundle/Entity</argument>
+                        <argument>/Applications/MAMP/htdocs/ASBL_Avec_Le_Soleil/src/BWF/VideosBundle/Entity</argument>
+                        <argument>/Applications/MAMP/htdocs/ASBL_Avec_Le_Soleil/src/BWF/FormationsBundle/Entity</argument>
+                        <argument>/Applications/MAMP/htdocs/ASBL_Avec_Le_Soleil/src/BWF/SiteBundle/Entity</argument>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>BWF\FormationsBundle\Entity</argument>
+                </call>
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
+                      <argument type="service" id="annotation_reader"/>
+                      <argument type="collection">
+                        <argument>/Applications/MAMP/htdocs/ASBL_Avec_Le_Soleil/src/BWF/ArticlesBundle/Entity</argument>
+                        <argument>/Applications/MAMP/htdocs/ASBL_Avec_Le_Soleil/src/BWF/VideosBundle/Entity</argument>
+                        <argument>/Applications/MAMP/htdocs/ASBL_Avec_Le_Soleil/src/BWF/FormationsBundle/Entity</argument>
+                        <argument>/Applications/MAMP/htdocs/ASBL_Avec_Le_Soleil/src/BWF/SiteBundle/Entity</argument>
+                      </argument>
+                    </service>
+                  </argument>
+                  <argument>BWF\SiteBundle\Entity</argument>
+                </call>
+              </service>
             </argument>
           </call>
           <call method="setProxyDir">

@@ -1,0 +1,7 @@
+parameters:
+#    bwf_achats.example.class: BWF\AchatsBundle\Example
+
+services:
+#    bwf_achats.example:
+#        class: %bwf_achats.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

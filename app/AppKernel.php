@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new BWF\VideosBundle\BWFVideoBundle(),
             new BWF\FormationsBundle\BWFFormationsBundle(),
             new BWF\SiteBundle\BWFSiteBundle(),
+            new BWF\AchatsBundle\BWFAchatsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

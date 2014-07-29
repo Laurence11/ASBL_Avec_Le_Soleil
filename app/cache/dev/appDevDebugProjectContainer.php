@@ -603,8 +603,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getDoctrine_Orm_DefaultEntityManagerService()
     {
-        $a = new \Doctrine\Common\Cache\ArrayCache();
-        $a->setNamespace('sf2orm_default_653ff5365252c022d8afd87ecba6df572b24fd567bc92fee0eb8651026c62cb5');
+        $a = $this->get('annotation_reader');
 
         $b = new \Doctrine\Common\Cache\ArrayCache();
         $b->setNamespace('sf2orm_default_653ff5365252c022d8afd87ecba6df572b24fd567bc92fee0eb8651026c62cb5');
@@ -612,20 +611,31 @@ class appDevDebugProjectContainer extends Container
         $c = new \Doctrine\Common\Cache\ArrayCache();
         $c->setNamespace('sf2orm_default_653ff5365252c022d8afd87ecba6df572b24fd567bc92fee0eb8651026c62cb5');
 
-        $d = new \Doctrine\ORM\Configuration();
-        $d->setEntityNamespaces(array());
-        $d->setMetadataCacheImpl($a);
-        $d->setQueryCacheImpl($b);
-        $d->setResultCacheImpl($c);
-        $d->setMetadataDriverImpl(new \Doctrine\ORM\Mapping\Driver\DriverChain());
-        $d->setProxyDir('/Applications/MAMP/htdocs/ASBL_Avec_Le_Soleil/app/cache/dev/doctrine/orm/Proxies');
-        $d->setProxyNamespace('Proxies');
-        $d->setAutoGenerateProxyClasses(true);
-        $d->setClassMetadataFactoryName('Doctrine\\ORM\\Mapping\\ClassMetadataFactory');
-        $d->setDefaultRepositoryClassName('Doctrine\\ORM\\EntityRepository');
-        $d->setNamingStrategy(new \Doctrine\ORM\Mapping\DefaultNamingStrategy());
+        $d = new \Doctrine\Common\Cache\ArrayCache();
+        $d->setNamespace('sf2orm_default_653ff5365252c022d8afd87ecba6df572b24fd567bc92fee0eb8651026c62cb5');
 
-        $this->services['doctrine.orm.default_entity_manager'] = $instance = call_user_func(array('Doctrine\\ORM\\EntityManager', 'create'), $this->get('doctrine.dbal.default_connection'), $d);
+        $e = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($a, array(0 => '/Applications/MAMP/htdocs/ASBL_Avec_Le_Soleil/src/BWF/ArticlesBundle/Entity', 1 => '/Applications/MAMP/htdocs/ASBL_Avec_Le_Soleil/src/BWF/VideosBundle/Entity', 2 => '/Applications/MAMP/htdocs/ASBL_Avec_Le_Soleil/src/BWF/FormationsBundle/Entity', 3 => '/Applications/MAMP/htdocs/ASBL_Avec_Le_Soleil/src/BWF/SiteBundle/Entity'));
+
+        $f = new \Doctrine\ORM\Mapping\Driver\DriverChain();
+        $f->addDriver($e, 'BWF\\ArticlesBundle\\Entity');
+        $f->addDriver($e, 'BWF\\VideosBundle\\Entity');
+        $f->addDriver($e, 'BWF\\FormationsBundle\\Entity');
+        $f->addDriver($e, 'BWF\\SiteBundle\\Entity');
+
+        $g = new \Doctrine\ORM\Configuration();
+        $g->setEntityNamespaces(array('BWFArticlesBundle' => 'BWF\\ArticlesBundle\\Entity', 'BWFVideoBundle' => 'BWF\\VideosBundle\\Entity', 'BWFFormationsBundle' => 'BWF\\FormationsBundle\\Entity', 'BWFSiteBundle' => 'BWF\\SiteBundle\\Entity'));
+        $g->setMetadataCacheImpl($b);
+        $g->setQueryCacheImpl($c);
+        $g->setResultCacheImpl($d);
+        $g->setMetadataDriverImpl($f);
+        $g->setProxyDir('/Applications/MAMP/htdocs/ASBL_Avec_Le_Soleil/app/cache/dev/doctrine/orm/Proxies');
+        $g->setProxyNamespace('Proxies');
+        $g->setAutoGenerateProxyClasses(true);
+        $g->setClassMetadataFactoryName('Doctrine\\ORM\\Mapping\\ClassMetadataFactory');
+        $g->setDefaultRepositoryClassName('Doctrine\\ORM\\EntityRepository');
+        $g->setNamingStrategy(new \Doctrine\ORM\Mapping\DefaultNamingStrategy());
+
+        $this->services['doctrine.orm.default_entity_manager'] = $instance = call_user_func(array('Doctrine\\ORM\\EntityManager', 'create'), $this->get('doctrine.dbal.default_connection'), $g);
 
         $this->get('doctrine.orm.default_manager_configurator')->configure($instance);
 
